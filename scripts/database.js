@@ -100,6 +100,7 @@ const database = {
     orderBuilder: {}
 }
 
+//getters
 export const getPaints = () => {
     return database.paints.map(paint => ({...paint}))
 }
@@ -115,7 +116,7 @@ export const getWheels = () => {
 export const getOrders = () => {
     return database.orders.map(order => ({...order}))
 }
-
+//setters
 export const setPaint = (id) => {
     database.orderBuilder.paintId = id
 }
@@ -130,6 +131,7 @@ export const setWheels = (id) => {
 }
 
 
+//adds new custom order
 export const addCustomOrder = () => {
     // Copy the current state of user choices
     const newOrder = {...database.orderBuilder}
@@ -151,6 +153,7 @@ export const addCustomOrder = () => {
     // document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+//retrieves the temp order
 export const getTempOrder = () => {
     return database.orderBuilder
 }
