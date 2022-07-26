@@ -1,4 +1,4 @@
-import { getInteriors, getPaints, getTechnologies, getWheels, getOrders } from "./database.js"
+import { getInteriors, getPaints, getTechnologies, getWheels, getOrders, getCarTypes } from "./database.js"
 
 export const ordersHtml = () => {
 
@@ -7,6 +7,7 @@ export const ordersHtml = () => {
     const technologies = getTechnologies()
     const wheels = getWheels()
     const orders = getOrders()
+    const carTypes = getCarTypes()
     
     let html = `<h2>Orders</h2>`
 
@@ -36,9 +37,15 @@ export const ordersHtml = () => {
         }
     )
 
-    const totalCost = foundPaint.price + foundInterior.price + foundTechnology.price + foundWheels.price
+    const foundCarType = carTypes.find(
+        (type) => {
+            return type.id === order.carTypeId
+        }
+    )
 
-    return `<p class="order-item">Order ${order.id} was placed on ${order.timestamp} and has ${foundPaint.name} paint, ${foundInterior.name} interior, the ${foundTechnology.name} technology option, and ${foundWheels.name} wheels. It will cost <strong>$${totalCost}</strong>.</p>`
+    const totalCost = (foundPaint.price + foundInterior.price + foundTechnology.price + foundWheels.price) * foundCarType.multiplier
+
+    return `<p class="order-item">Order ${order.id} was placed on ${order.timestamp}. The ${foundCarType.type} has ${foundPaint.name} paint, ${foundInterior.name} interior, the ${foundTechnology.name} technology option, and ${foundWheels.name} wheels. It will cost <strong>$${totalCost}</strong>.</p>`
     })
     //join the array of html strings into one
     html += ordersMap.join("")

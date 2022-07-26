@@ -94,10 +94,28 @@ const database = {
             interiorId: 3,
             technologyId: 2,
             wheelsId: 4,
-            timestamp: 93838292948
+            timestamp: 93838292948,
+            carTypeId: 1
         }
     ],
-    orderBuilder: {}
+    orderBuilder: {},
+    carTypes: [
+        {
+            id: 1,
+            type: "Car",
+            multiplier: 1
+        },
+        {
+            id: 2,
+            type: "SUV",
+            multiplier: 1.5
+        },
+        {
+            id: 3,
+            type: "Truck",
+            multiplier: 2.25
+        },
+    ]
 }
 
 //getters
@@ -116,6 +134,9 @@ export const getWheels = () => {
 export const getOrders = () => {
     return database.orders.map(order => ({...order}))
 }
+export const getCarTypes = () => {
+    return database.carTypes.map(carType => ({...carType}))
+}
 //setters
 export const setPaint = (id) => {
     database.orderBuilder.paintId = id
@@ -129,7 +150,9 @@ export const setTechnology = (id) => {
 export const setWheels = (id) => {
     database.orderBuilder.wheelsId = id
 }
-
+export const setCarType = (id) => {
+    database.orderBuilder.carTypeId = id
+}
 
 //adds new custom order
 export const addCustomOrder = () => {

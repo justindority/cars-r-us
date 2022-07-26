@@ -8,7 +8,8 @@
 //     }
 // )
 
-import { getPaints, getWheels, getInteriors, getTechnologies, setPaint, setInterior, setTechnology, setWheels, getTempOrder, addCustomOrder } from "./database.js";
+import { typesHtml } from "./carTypes.js";
+import { getPaints, getWheels, getInteriors, getTechnologies, setPaint, setInterior, setTechnology, setWheels, getTempOrder, addCustomOrder, setCarType } from "./database.js";
 import { interiorsHtml } from "./interiors.js";
 import { ordersHtml } from "./orders.js";
 import { paintsHtml } from "./paints.js";
@@ -22,6 +23,7 @@ export const printAllHtml = () => {
     paintsDiv.innerHTML = paintsHtml()
     technologiesDiv.innerHTML = technologiesHtml()
     ordersDiv.innerHTML = ordersHtml()
+    typesDiv.innerHTML = typesHtml()
 }
 
 //setting all the div variables for html printing
@@ -29,6 +31,7 @@ const wheelsDiv = document.getElementById("wheelsDiv")
 const interiorsDiv = document.getElementById("interiorsDiv")
 const paintsDiv = document.getElementById("paintsDiv")
 const technologiesDiv = document.getElementById("technologiesDiv")
+const typesDiv = document.getElementById("typesDiv")
 const ordersDiv = document.getElementById("ordersDiv")
 printAllHtml()
 
@@ -97,6 +100,18 @@ document.addEventListener(
         if (event.target.value.startsWith("wheel")) {
             const [,wheelId] = event.target.value.split("--")
             setWheels(parseInt(wheelId))
+
+        }
+    }
+)
+
+//change listener to set temporary order type value
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.value.startsWith("carType")) {
+            const [,typeId] = event.target.value.split("--")
+            setCarType(parseInt(typeId))
 
         }
     }
