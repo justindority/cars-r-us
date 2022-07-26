@@ -1,0 +1,27 @@
+button {
+    margin-top: 3em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+
+}
+
+.selector {
+    margin: 1em;
+    padding: 1em;
+    background-color: lightsteelblue;
+}
+
+.allSelectors {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.order-item {
+    border: 2px solid black;
+    background-color: lightsalmon;
+    padding: 1em;
+}
+
+#ordersDiv p {
+    margin-left: 1em;
+}
